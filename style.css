@@ -9,6 +9,7 @@ body{
 	text-align: center;
 	background-color: #e4e4e4;
 	border-radius: 5px;
+	box-shadow: 3px 3px 15px #4c4c4c;
 }
 label{
 	font-size: 2em;
@@ -55,4 +56,9 @@ label{
 @keyframes fade-in {
 	0% {opacity: 0}
 	100% {opacity: 1}
+}
+@media screen and (max-width: 580px){
+	.search_result p{font-size: 1em;}
+	.search_result h2{font-size: 1.5em;}
+
 }
