@@ -23,10 +23,16 @@ function startGame(){
 		cells[i].style.removeProperty('background-color');
 		cells[i].addEventListener('click', turnClick, false);
 	}
+	if (aiPlayer == 'X') {
+		setTimeout(() => {
+		cells[0].innerText = 'X';
+		origBoard[0] = 'X';
+		}, 500);
+	}
 }
 function turnClick(){
 	if (typeof origBoard[this.id] == 'number') {
-		if (turn(this.id, huPlayer) && !checkTie()) setTimeout(() => turn(bestSpot(), aiPlayer), 500);
+		if (turn(this.id, huPlayer)) setTimeout(() => turn(bestSpot(), aiPlayer), 500);
 	}
 }
 function turn(id, player){
@@ -37,6 +43,7 @@ function turn(id, player){
 		gameOver(gameWon);
 		return false;
 	}
+	if (checkTie()) return false;
 	return true;
 }
 function checkWin(board, player) {
@@ -68,6 +75,7 @@ function gameOver(gameWon) {
 	setTimeout(() => declareWinner(gameWon.player == huPlayer ? 'You win!': 'You lose :('), 500);
 }
 function emptySquares(){
+	console.log(origBoard.filter(el => typeof el == 'number'));
 	return origBoard.filter(el => typeof el == 'number');
 }
 

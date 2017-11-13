@@ -32,8 +32,25 @@ td{
 .buttons{
 	text-align: center;
 }
-.buttons button{
+.buttons .startGame{
 	display: inline-block;
+	font-size: 1em;
+	font-weight: bold;
+	text-align: center;
+	border: 0;
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 0.7em;
+	background: #c3c3c3;
+	background-clip: padding-box;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e0dede), color-stop(#eaeaea), to(#6b6969));
+	background: linear-gradient(#e0dede, #eaeaea, #6b6969);
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.buttons .startGame:hover{
+	-webkit-box-shadow: 3px 5px 12px rgba(0,0,0,0.4);
+	        box-shadow: 3px 5px 12px rgba(0,0,0,0.4);
 }
 .endGame{
 	/*display: none;*/
@@ -49,9 +66,6 @@ td{
 	font-size: 2em;
 	-webkit-box-shadow: 5px 10px 15px rgba(0,0,0,0.3);
 	        box-shadow: 5px 10px 15px rgba(0,0,0,0.3);
-}
-.startGame{
-
 }
 .fixed{
 	position: fixed;
