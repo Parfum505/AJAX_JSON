@@ -1,0 +1,104 @@
+@import url(https://fonts.googleapis.com/css?family=font-family=Indie+Flower|Fontdiner+Swanky);
+
+table{
+	border-collapse: collapse;
+	margin: 50px auto;
+}
+table td{
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+table tr:first-child td{
+	border-top: 0;
+}
+table tr:last-child td{
+	border-bottom: 0;
+}
+table tr td:first-child{
+	border-left: 0;
+}
+table tr td:last-child{
+	border-right: 0;
+}
+td{
+	border: 2px solid #333;
+	height: 100px;
+	width: 100px;
+	cursor: pointer;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 3em;
+}
+.buttons{
+	text-align: center;
+}
+.buttons button{
+	display: inline-block;
+}
+.endGame{
+	/*display: none;*/
+	position: absolute;
+	top: 140px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	        transform: translateX(-50%);
+	background-color: rgba(12,12,12, 0.5);
+	color: white;
+	border-radius: 5px;
+	padding: 1.4em;
+	font-size: 2em;
+	-webkit-box-shadow: 5px 10px 15px rgba(0,0,0,0.3);
+	        box-shadow: 5px 10px 15px rgba(0,0,0,0.3);
+}
+.startGame{
+
+}
+.fixed{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: black;
+	color: white;
+	text-align: center;
+	-webkit-transition: opacity 1s;
+	transition: opacity 1s;
+}
+.greeting{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	        transform: translateX(-50%) translateY(-50%);
+	font-size: calc(1em + 2vw);
+}
+.greeting p:not(:last-child){
+	font-family: 'Fontdiner Swanky', cursive;
+}
+.greeting p:nth-child(2){
+	font-size: 0.6em;
+}
+.greeting span{
+	position: relative;
+	cursor: pointer;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+	padding: 0 20px;
+}
+.greeting span:hover{
+	text-shadow: 0 0 60px #fff;
+	color: red;
+}
+.greeting .x{
+
+}
+.small{
+	font-size: 0.5em;
+}
+.big{
+	font-size: calc(1.5em + 2vw);
+}
+.hide{
+	opacity: 0;
+}

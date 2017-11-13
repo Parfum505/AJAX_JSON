@@ -1,6 +1,6 @@
 var origBoard;
-const huPlayer = 'O';
-const aiPlayer = 'X';
+var huPlayer = 'X';
+var aiPlayer = 'O';
 const winCombos = [
 	[0,1,2],
 	[3,4,5],
@@ -15,6 +15,8 @@ const cells = document.querySelectorAll('.cell');
 
 function startGame(){
 	document.querySelector('.endGame').style.display = 'none';
+	document.querySelector('.startGame').style.display = 'none';
+	document.querySelector('.startGame').innerText = 'Reset';
 	origBoard = Array.from(Array(9).keys());
 	for(var i=0; i < cells.length; i++){
 		cells[i].innerText = '';
@@ -63,7 +65,7 @@ function gameOver(gameWon) {
 		document.getElementById(winArr[i]).style.backgroundColor =
 			gameWon.player == huPlayer ? "blue" : "red";
 	}
-	declareWinner(gameWon.player == huPlayer ? 'You win!': 'You lose :(');
+	setTimeout(() => declareWinner(gameWon.player == huPlayer ? 'You win!': 'You lose :('), 500);
 }
 function emptySquares(){
 	return origBoard.filter(el => typeof el == 'number');
@@ -76,6 +78,7 @@ function bestSpot(){
 function declareWinner(message){
 	document.querySelector('.endGame .text').innerText = message;
 	document.querySelector('.endGame').style.display = 'block';
+	document.querySelector('.startGame').style.display = 'inline-block';
 
 }
 function checkTie(){
@@ -84,8 +87,32 @@ function checkTie(){
 			cells[i].style.backgroundColor = 'green';
 			cells[i].removeEventListener('click', turnClick, false);
 		}
-		declareWinner('Tie game!');
+		setTimeout(() => declareWinner('Tie game!'), 500);
 		return true;
 	}
 	return false;
 }
+function greeting(btn1, btn2, fixed){
+	btn1.classList.add('big');
+	btn2.classList.add('small');
+	setTimeout(function(){
+		fixed.classList.add('hide');
+	}, 600);
+	setTimeout(function(){
+		fixed.style.display = 'none';
+	}, 1600);
+
+}
+var buttonX = document.querySelector('.x');
+var buttonO = document.querySelector('.o');
+var fixed = document.querySelector('.fixed');
+
+
+buttonX.addEventListener('click', function(){
+	greeting(buttonX, buttonO, fixed);
+});
+buttonO.addEventListener('click', function(){
+	greeting(buttonO, buttonX, fixed);
+	huPlayer = 'O';
+	aiPlayer = 'X';
+});
