@@ -160,7 +160,6 @@ var buttonX = document.querySelector('.x');
 var buttonO = document.querySelector('.o');
 var fixed = document.querySelector('.fixed');
 
-
 buttonX.addEventListener('click', function(){
 	greeting(buttonX, buttonO, fixed);
 });
