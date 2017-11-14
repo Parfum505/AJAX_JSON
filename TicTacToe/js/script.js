@@ -74,13 +74,58 @@ function gameOver(gameWon) {
 	}
 	setTimeout(() => declareWinner(gameWon.player == huPlayer ? 'You win!': 'You lose :('), 500);
 }
-function emptySquares(){
-	console.log(origBoard.filter(el => typeof el == 'number'));
-	return origBoard.filter(el => typeof el == 'number');
+function emptySquares(board){
+//	console.log(origBoard.filter(el => typeof el == 'number'));
+	return board.filter(el => typeof el == 'number');
 }
 
 function bestSpot(){
-	return emptySquares()[0];
+	return minimax(origBoard, aiPlayer).index ;
+}
+
+function minimax(newBoard, player){
+	var availSpot = emptySquares(newBoard);
+	if (checkWin(newBoard, player)) {
+		return {score: -10};
+	} else if(checkWin(newBoard, aiPlayer)){
+		return {score: 10};
+	} else if(availSpot.length === 0){
+		return {score: 0};
+	}
+	var moves = [];
+	for (var i = 0; i < availSpot.length; i++) {
+		var move = {};
+		move.index = newBoard[availSpot[i]];
+		newBoard[availSpot[i]] = player;
+		if (player == aiPlayer) {
+			var result = minimax(newBoard, huPlayer);
+			move.score = result.score;
+		} else {
+			var result = minimax(newBoard, aiPlayer);
+			move.score = result.score;
+		}
+		newBoard[availSpot[i]] = move.index;
+		moves.push(move);
+	}
+	var bestMove;
+	if (player === aiPlayer) {
+		var bestScore = -10000;
+		for (var i = 0; i < moves.length; i++) {
+			if(moves[i].score > bestScore){
+				bestScore = moves[i].score;
+				bestMove = i;
+			}
+		}
+	} else {
+		var bestScore = 10000;
+		for (var i = 0; i < moves.length; i++) {
+			if(moves[i].score < bestScore){
+				bestScore = moves[i].score;
+				bestMove = i;
+			}
+		}
+	}
+	return moves[bestMove];
 }
 
 function declareWinner(message){
@@ -90,7 +135,7 @@ function declareWinner(message){
 
 }
 function checkTie(){
-	if (emptySquares().length == 0) {
+	if (emptySquares(origBoard).length == 0) {
 		for (var i = 0; i < cells.length; i++) {
 			cells[i].style.backgroundColor = 'green';
 			cells[i].removeEventListener('click', turnClick, false);
